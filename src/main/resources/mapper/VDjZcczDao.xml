@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.VDjZcczDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.VDjZccz" id="VDjZcczMap">
+        <result property="ywid" column="YWID" jdbcType="INTEGER"/>
+        <result property="dwdh" column="DWDH" jdbcType="VARCHAR"/>
+        <result property="billid" column="BILLID" jdbcType="INTEGER"/>
+        <result property="summary" column="SUMMARY" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME" jdbcType="VARCHAR"/>
+        <result property="tbr" column="TBR" jdbcType="VARCHAR"/>
+        <result property="tbrname" column="TBRNAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!--查询指定行数据-->
+    <select id="qryYwid" resultMap="VDjZcczMap">
+        select YWID,
+               DWDH,
+               BILLID,
+               SUMMARY,
+               CREATETIME,
+               TBR,
+               TBRNAME
+        from V_DJ_ZCCZ
+        where dwdh = #{dwdh}
+          and billid = #{billid}
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,3 @@
+netstat -ano |findstr 8001
+
+tasklist |findstr 10944

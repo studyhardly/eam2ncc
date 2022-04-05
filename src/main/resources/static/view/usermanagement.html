@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/usercontroller.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/fontawesome.css">
+    <style>
+        .tab-h th {
+            text-align: center;
+        }
+    </style>
+<script type="javascript" >
+
+</script>
+
+</head>
+<body class="body-bg" onload="user_real()">
+<div class="container">
+    <div class="text-center">
+        <h3 class="p-h3">系统用户管理界面</h3>
+    </div>
+    <br>
+    <div class="col-lg-12 label">
+        <div class="col-lg-12  text-left">
+            <p>对本系统的用户列表查询</p>
+            <p>可以根据工号查询，可以对用户执行新增，修改，上线，下线操作</p>
+
+
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label class="p-size">工号:</label>
+            <input type="text" class="form-control" id="usercode" placeholder="用户的工号">
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label class="p-size">用户名:</label>
+            <input type="text" class="form-control " id="username" placeholder="用户名进行模糊查询，可以少输，不要错输。。。"> &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="col-lg-12">
+
+        <button class="btn btn-info" onclick="user_qry()">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-warning" onclick="user_reset()">重置</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-info" onclick="user_add()">新增</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-info pull-right" onclick="user_all()">显示全部</button>
+    </div>
+
+
+    <div class="col-lg-12">
+        <br>
+        <p class=" p-size ">查询结果</p>
+    </div>
+
+    <div class="col-lg-12">
+        <div>
+            <table class="table table-bordered text-center" style="word-break:break-all;" id="user-tab">
+                <thead class="tab  label-success " >
+                <tr class="tab-h">
+                    <th>序号</th>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>状态</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody class="nr-auto" id="userlist">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+             <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title" id="myModalLabel">新增</h4>
+                     </div>
+                     <div class="modal-body">
+                         <div class="form-group" id="user_codediv">
+                             <label for="user_code">工号：</label>
+                             <input type="text" name="user_code" class="form-control" id="user_code" placeholder="工号">
+                         </div>
+                         <div class="form-group">
+                             <label for="user_name">姓名：</label>
+                             <input type="text" name="user_name" class="form-control" id="user_name" placeholder="姓名">
+                         </div>
+                         <div class="form-group">
+                             <label for="user_remark">备注</label>
+                             <input type="text" name="user_remark" class="form-control" id="user_remark" placeholder="备注">
+                         </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                         <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="user_save()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                     </div>
+                 </div>
+             </div>
+</div>
+</body>
+</html>

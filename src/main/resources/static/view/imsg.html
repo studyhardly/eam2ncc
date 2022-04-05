@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="text/html">
+    <title>生成报文</title>
+    <script type="text/javascript" src="../js/jquery.js" ></script>
+    <script type="text/javascript" src="../js/controller.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.js" ></script>
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="body-bg">
+<div class="container">
+    <div class="text-center">
+        <b><h3 class="p-h3 ">EAM、NCC接口报文明细</h3></b>
+    </div>
+    <div>
+        <div>
+            <div><p class="label" id="tip"></p></div>
+            <div><textarea class="ta" id="zcbm"></textarea></div>
+            <div class="div-btn">
+                <button class="btn bg-primary" onclick="doSubmit()">生成报文</button> &nbsp;
+                <button class="btn btn-success" onclick="doCopy()">复制报文</button>&nbsp;&nbsp;
+                <button class="btn btn-danger" onclick="doClear()">清除编码</button>
+            </div>
+        </div>
+
+        <div class="div-qry">
+            <SPAN class="label ">单位代号:</SPAN>
+            <input id="dwdh" class="ipt input-sm">
+            <span class="label">单据编码:</span>
+            <input id="billid" class="ipt input-sm">
+            &nbsp;
+            <button id="qry-ywid" class="btn btn-sm " onclick="qry_ywid()">查询</button>
+        </div>
+
+        <div class="div-jk ">
+            <select id="select-jklx"  title="接口类型" onchange="change_jklx()">
+                <option selected value="zcxz">资产新增</option>
+                <option value="zccz">资产处置</option>
+
+            </select>
+        </div>
+    </div>
+    <div >
+        <textarea id="res" class="nr" readonly></textarea>
+    </div>
+    <div class=" bq  ">
+        All Rights Reserved @Powered By ShiShengxi.
+    </div>
+</div>
+</body>
+</html>

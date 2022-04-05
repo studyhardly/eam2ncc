@@ -1,0 +1,229 @@
+/*定义头部布局，前面的div可以不用写，#号前面默认有个id，凡事定义了id的标签，都可以用#号来表示*/
+.heading {
+    width: 100%;
+    height: 120px;
+    background-color: rgba(207, 247, 128, 0.12);
+    padding-top: 3px;
+    float: bottom;
+
+}
+
+.p-h3 {
+    font-family: "Microsoft YaHei UI";
+    color: #ffffff;
+}
+
+.top-div-center {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 90px;
+   /* border: 1px solid #666;*/
+ /*   overflow: hidden;*/
+    position: relative;
+    /*display: table-cell;*/
+    text-align: center;
+    vertical-align: middle;
+    background: #0597f6;
+}
+.ifm-mian{
+    border: 3px;
+    height: 100%;
+    width: 100%;
+}
+
+.titlep {
+    margin: 0;
+    padding: 25px;
+    width: 100%;
+    font-family: 宋体;
+    font-size: 20pt;
+    color: #ffffff;
+}
+
+.nr {
+    width: 100%;
+    height: 680px;
+    resize: none;
+    margin-top: 5px;
+    clear: both;
+    background-color: #e9fae1;
+}
+.nr-auto {
+    width: 100%;
+    resize: none;
+    margin-top: 5px;
+    clear: both;
+    background-color: #e9fae1;
+}
+
+.nr-sm {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    margin-top: 25px;
+    clear: both;
+
+}
+
+.ta {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    background-color: #e9fae1;
+}
+
+.ipt {
+    width: 50pt;
+    height: 22pt;
+    background-color: #e2e2e2;
+}
+
+.ipt-lg {
+    width: 100pt;
+    height: 22pt;
+    background-color: #e2e2e2;
+}
+
+.body-bg {
+    height: 95%;
+    width: 98%;
+    background-color: rgba(7, 60, 84, 0.95);
+  /*  background-image: url("../image/bg.png");*/
+}
+
+
+
+.bq {
+    color: #FFFFFF;
+    margin-top: 10px;
+    text-align: center;
+    clear: both;
+
+}
+
+.div-btn {
+    float: left;
+}
+
+.div-jk {
+    float: right;
+}
+
+.div-qry {
+    margin-left: 200pt;
+    float: left;
+}
+
+.div-qry-l {
+    margin-top: 4pt;
+
+}
+
+.div-qry-r {
+    margin-top: 4pt;
+    margin-right: 4pt;
+    float: right;
+}
+
+.p-size {
+    font-size: 13pt;
+    font-family: "Microsoft YaHei UI";
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.p-size-sm {
+    font-size: 10pt;
+    font-family: "Microsoft YaHei UI";
+    font-weight: normal;
+    color: #000000;
+}
+.tab-h {
+    font-size: 10pt;
+    font-family: "Microsoft YaHei UI";
+    font-weight: bold;
+    color: #ffffff;
+}
+.td-align {
+   vertical-align: middle;
+}
+
+
+.tab {
+    margin-top: 5pt;
+}
+
+
+.text-s {
+    text-size: 10pt;
+}
+
+/* SELECT W/IMAGE */
+select#select-jklx {
+    width: 80pt;
+    height: 26pt;
+    text-align: center;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    vertical-align: middle;
+    border: 1px solid #94c1e7;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    border-radius: 0.3em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #ffffff;
+    font-family: "Microsoft YaHei UI";
+    font-size: 1.1em;
+    color: #204d74;
+    cursor: pointer;
+}
+
+/*SELECT W/DOWN-ARROW*/
+select#selectPointOfInterest {
+    width: 90pt;
+    height: 30pt;
+    line-height: 20pt;
+    padding-right: 5pt;
+    text-indent: 5pt;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #9acfea;
+    border-radius: 6px;
+    appearance: none;
+    font-family: "Microsoft YaHei UI";
+    font-size: 13pt;
+    font-weight: normal;
+    color: RGBA(102, 102, 102, 0.7);;
+    cursor: pointer;
+    outline: none;
+    /*RGBA(102,102,102,0.7);*/
+}
+
+
+/*LABEL FOR SELECT*/
+label#lblSelect {
+    position: relative;
+    display: inline-block;
+}
+
+
+/*DOWNWARD ARROW (25bc)*/
+label#lblSelect::after {
+    content: "\25bc";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20pt;
+    line-height: 40pt;
+    vertical-align: middle;
+    text-align: center;
+    background: #94c1e7;
+    color: #2984ce;
+    -moz-border-radius: 0 6px 6px 0;
+    -webkit-border-radius: 0 6px 6px 0;
+    border-radius: 0 6px 6px 0;
+    pointer-events: none;
+}

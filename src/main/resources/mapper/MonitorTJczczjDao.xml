@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.MonitorTJczczjDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.MonitorTJczczj" id="MonitorTJczczjMap">
+        <result property="tid" column="TID" jdbcType="VARCHAR"/>
+        <result property="posummary" column="POSUMMARY" jdbcType="VARCHAR"/>
+        <result property="sysncstatus" column="SYSNCSTATUS" jdbcType="VARCHAR"/>
+        <result property="sysncmessage" column="SYSNCMESSAGE" jdbcType="VARCHAR"/>
+        <result property="sysncdate" column="SYSNCDATE" jdbcType="TIMESTAMP"/>
+        <result property="compid" column="COMPID" jdbcType="VARCHAR"/>
+        <result property="isnew" column="ISNEW" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByFlag" resultMap="MonitorTJczczjMap">
+        select
+          TID, POSUMMARY, SYSNCSTATUS, SYSNCMESSAGE, SYSNCDATE, COMPID, ISNEW
+        from NSOAWARE.MONITOR_T_JCZCZJ t
+        where ISNEW =#{isNew}
+       order by t.posummary ,t.sysncstatus
+    </select>
+    <select id="queryByYwidAndStatus" resultType="com.ssx.eam2ncc.entity.MonitorTJczczj">
+        select
+            TID, POSUMMARY, SYSNCSTATUS, SYSNCMESSAGE, SYSNCDATE, COMPID, ISNEW
+        from NSOAWARE.MONITOR_T_JCZCZJ t
+        where POSUMMARY =#{ywid}
+        and SYSNCSTATUS = #{status}
+        order by t.posummary ,t.sysncstatus
+
+    </select>
+
+
+    <!--通过主键修改数据-->
+    <update id="updateFlagByTid">
+        update NSOAWARE.MONITOR_T_JCZCZJ
+        set  ISNEW = #{isNew}
+        where  tid= #{tid}
+    </update>
+
+</mapper>
+

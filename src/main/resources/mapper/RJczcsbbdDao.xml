@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.RJczcsbbdDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.RJczcsbbd" id="RJczcsbbdMap">
+        <result property="tid" column="TID" jdbcType="VARCHAR"/>
+        <result property="posummary" column="POSUMMARY" jdbcType="VARCHAR"/>
+        <result property="sysncstatus" column="SYSNCSTATUS" jdbcType="VARCHAR"/>
+        <result property="sysncmessage" column="SYSNCMESSAGE" jdbcType="VARCHAR"/>
+        <result property="sysncmessagelog" column="SYSNCMESSAGELOG" jdbcType="VARCHAR"/>
+        <result property="sysncdate" column="SYSNCDATE" jdbcType="TIMESTAMP"/>
+        <result property="compid" column="COMPID" jdbcType="VARCHAR"/>
+        <result property="logid" column="LOGID" jdbcType="VARCHAR"/>
+    <!--    <result property="modelstr" column="MODELSTR" jdbcType="VARCHAR"/>
+        <result property="modelstrcurr" column="MODELSTRCURR" jdbcType="VARCHAR"/>-->
+        <result property="resendurl" column="RESENDURL" jdbcType="VARCHAR"/>
+        <result property="invokeurl" column="INVOKEURL" jdbcType="VARCHAR"/>
+        <result property="invokeaddress" column="INVOKEADDRESS" jdbcType="VARCHAR"/>
+        <result property="pid" column="PID" jdbcType="VARCHAR"/>
+        <result property="pc" column="PC" jdbcType="VARCHAR"/>
+        <result property="ipport" column="IPPORT" jdbcType="VARCHAR"/>
+        <result property="handletime" column="HANDLETIME" jdbcType="VARCHAR"/>
+        <result property="errortype" column="ERRORTYPE" jdbcType="VARCHAR"/>
+        <result property="errorlog" column="ERRORLOG" jdbcType="VARCHAR"/>
+        <result property="autoresend" column="AUTORESEND" jdbcType="VARCHAR"/>
+        <result property="resendflag" column="RESENDFLAG" jdbcType="VARCHAR"/>
+        <result property="errorcode" column="ERRORCODE" jdbcType="VARCHAR"/>
+        <result property="zdr" column="ZDR" jdbcType="VARCHAR"/>
+        <result property="ttime" column="TTIME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RJczcsbbdMap">
+        select TID,
+               POSUMMARY,
+               SYSNCSTATUS,
+               SYSNCMESSAGE,
+               SYSNCMESSAGELOG,
+               SYSNCDATE,
+               COMPID,
+               LOGID,
+               MODELSTR,
+               MODELSTRCURR,
+               RESENDURL,
+               INVOKEURL,
+               INVOKEADDRESS,
+               PID,
+               PC,
+               IPPORT,
+               HANDLETIME,
+               ERRORTYPE,
+               ERRORLOG,
+               AUTORESEND,
+               RESENDFLAG,
+               ERRORCODE,
+               ZDR,
+               TTIME
+        from nsoaware.R_JCZCSBBD
+        where TID = #{tid}
+    </select>
+
+
+</mapper>
+

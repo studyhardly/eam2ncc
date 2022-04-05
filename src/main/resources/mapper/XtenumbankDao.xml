@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.XtenumbankDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.Xtenumbank" id="XtenumbankMap">
+        <result property="bz1" column="BZ1" jdbcType="VARCHAR"/>
+        <result property="enumlxid" column="ENUMLXID" jdbcType="VARCHAR"/>
+        <result property="stoped" column="STOPED" jdbcType="NUMERIC"/>
+        <result property="compid" column="COMPID" jdbcType="VARCHAR"/>
+        <result property="enumid" column="ENUMID" jdbcType="VARCHAR"/>
+        <result property="enumlxmc" column="ENUMLXMC" jdbcType="VARCHAR"/>
+        <result property="enumvalue" column="ENUMVALUE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="query" resultMap="XtenumbankMap">
+        select
+          BZ1, ENUMLXID, STOPED, COMPID, ENUMID, ENUMLXMC, ENUMVALUE
+        from XTENUMBANK
+        <where>
+            1 = 1
+            <if test="enumlxid != null and enumlxid!=''">
+                <bind name="lxid" value="'%'+enumlxid+'%'"/>
+                and ENUMLXID like #{lxid}
+            </if>
+            <if test="enumlxmc != null and enumlxmc!=''">
+                <bind name="lxmc" value="'%'+enumlxmc+'%'"/>
+                and ENUMLXMC like #{lxmc}
+            </if>
+            <if test="enumvalue != null and enumvalue!=''">
+                <bind name="val" value="'%'+enumvalue+'%'"/>
+                and ENUMVALUE like #{val}
+            </if>
+        </where>
+    </select>
+
+</mapper>
+

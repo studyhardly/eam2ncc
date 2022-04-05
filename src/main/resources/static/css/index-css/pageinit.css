@@ -1,0 +1,135 @@
+@charset "utf-8";
+/*兼容浏览器*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.icontent {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.content-left {
+    width: 15%;
+    background-color: #1c232f;
+    /*左浮动*/
+    float: left;
+}
+
+.content-right {
+    width: 85%;
+    /*// background-color: #6495ED;*/
+    background: url("../../image/bg.png");
+    /*右浮动*/
+    float: right;
+}
+
+.left-title {
+    height: 60px;
+    width: 100%;
+}
+
+.left-title > a {
+    display: block;
+    width: 100%;
+    height: 60px;
+    /*垂直剧中*/
+    line-height: 60px;
+    /*水平剧中*/
+    text-align: center;
+    /*字体颜色*/
+    color: #ffffff;
+    /*去掉默认下划线*/
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "Microsoft YaHei UI";
+    translation: .4s;
+}
+
+.nav-title a :hover {
+    font-size: 23px;
+
+}
+
+
+/*分割线*/
+.seg {
+    height: 1px;
+    width: 100%;
+    background-color: #000000;
+
+}
+
+.nav {
+    margin: 5px 0;
+}
+
+.nav-menu:hover {
+    background-color: #204d74;
+}
+
+/*菜单项主标题*/
+.nav-title {
+    height: 50px;
+    width: 100%;
+
+}
+.nav-title a{
+    display: block;
+    width: 100%;
+    height: 50px;
+    /*垂直剧中*/
+    line-height: 50px;
+    /*水平剧中*/
+    text-align: center;
+    /*字体颜色*/
+    color: #ffffff;
+    /*去掉默认下划线*/
+    text-decoration: none;
+    font-size: 21px;
+    font-family: "Microsoft YaHei UI";
+    translation: .4s;
+}
+
+/*子标题*/
+.nav-content {
+    width: 100%;
+    height: 100%;
+    background-color: #0c1119;
+}
+
+.nav-content > a {
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: #CCCCCC;
+    text-decoration: none;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    transition: .2s;
+    box-sizing: border-box;
+    font-family: "sans-serif";
+}
+
+.nav-content > a:hover {
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 40px;
+    text-align: center;
+    background-color: #12040c;
+    font-size: 19px;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei UI";
+}

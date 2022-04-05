@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>资产变动推送结果</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/pagecontroller/base.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="body-bg">
+<div class="container">
+    <div class="text-center">
+        <h3 class="p-h3">资产变动接口推送状态</h3>
+    </div>
+    <br>
+    <div class="col-lg-12  label">
+        <div class="col-lg-12 text-left ">
+            <p>资产变动按单据推送，若单据推送失败，则单据包含所有变动卡片都失败。</p>
+            <p>查询时可根据单位代号、单据编码、业务年度组合查询，三者缺一不可</p>
+            <p>若单据业务ID不为空，则只根据单据业务ID查询，其他三个查询条件不生效</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-2">
+            <label class="p-size">单位代号:</label>
+            <input type="text" class="form-control" id="dwdh" placeholder="请输入4位单位编码">
+        </div>
+        <div class="col-lg-2">
+            <label class="p-size">单据编码:</label>
+            <input type="text" class="form-control" id="billid" placeholder="请输入单据编码">
+        </div>
+        <div class="col-lg-2">
+            <label class="p-size">业务年度:</label>
+            <input type="text" class="form-control" id="year" placeholder="请输业务发生年度">
+        </div>
+        <div class="col-lg-2">
+            <label class="p-size">单据YWID:</label>
+            <input type="text" class="form-control" id="ywid" placeholder="请输入单据YWID">
+        </div>
+    </div>
+
+
+    <div class="col-lg-8 ">
+        <br>
+        <button class="btn btn-info" onclick="qry_result()">查询</button> &nbsp;&nbsp;
+        <button class="btn btn-warning" onclick="sync_czreset()">重置</button>
+
+    </div>
+    <div class="col-lg-12">
+        <br>
+        <p class=" p-size ">查询结果</p>
+    </div>
+
+    <div class="col-lg-12">
+        <div>
+            <table class="table table-bordered text-center" style="word-break:break-all;" id="user-tab">
+                <thead class="tab  label-success ">
+                <tr class="tab-h">
+                    <td>序号</td>
+                    <td>业务ID</td>
+                    <td>摘要</td>
+                    <td>状态</td>
+                    <td>反馈信息</td>
+                    <td>同步时间</td>
+                </tr>
+                </thead>
+                <tbody class="nr-auto">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    /*用window的onload事件，窗体加载完毕的时候，设置年份默认为当前年*/
+    window.onload = function () {
+        var date = new Date();
+        var cur_year = date.getFullYear();
+        $("#year").val(cur_year);
+    };
+
+    /*查询同步结果*/
+    function qry_result() {
+        var dwdh = $("#dwdh").val().replace(/\s+/g, "");
+        var billid = $("#billid").val().replace(/\s+/g, "");
+        var year = $("#year").val().replace(/\s+/g, "");
+        var ywid = $("#ywid").val().replace(/\s+/g, "");
+        var date = new Date();
+        var cur_year = date.getFullYear();
+        $("#dwdh").val(dwdh);
+        $("#billid").val(billid);
+        $("#ywid").val(ywid);
+        $("#year").val(year);
+
+        if (ywid.length <= 0) {  // ywid 为空，根据单位编码和单据编号查询
+            if (dwdh.length != 4) {
+                alert("单位代号不正确，请重新输入4位单位代号");
+            } else if (billid.length <= 0) {
+                alert("单据编码不可为空");
+            } else if (year < 2019 || year > cur_year) {
+                alert("业务年份不能在2019年至" + cur_year + "期间之外")
+            } else {
+                var url = "/zcbd/sync_result"
+                //alert(url);
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    data: {"dwdh": dwdh, "billid": billid, "year": year},
+                    // jsonp:"callback",
+                    success: function (data) {
+                        debugger;
+                        console.log(data);
+                        var html = "";
+                        debugger;
+                        var synctimd = formatDate(data.sysncdate);
+                        /*      var st = data[i].sysncstatus;
+                              var tid = data[i].tid;*/
+                        html += "<tr>" +
+                            "<td style=\"vertical-align: middle;\">" + 1 + "</td>" +
+                            "<td style=\"vertical-align: middle;\">" + data.tid + "</td>" +
+                            "<td style=\"vertical-align: middle;\">" + data.posummary + "</td>" +
+                            "<td style=\"vertical-align: middle;\">" + data.sysncstatus + "</td>" +
+                            "<td style=\"vertical-align: middle; width:380px; height:51px; word-wrap:break-word; word-break:break-all\">" + data.sysncmessage + "</td>" +
+                            "<td style=\"vertical-align: middle;\">" + synctimd + "</td>" +
+                            /*  "<td style=\"vertical-align: middle;\"><a class='btn-danger btn-sm' onclick=sync_status(" + data[i].tid + ")>重发" + "</a></td>" +*/
+                            /*"<td style=\"vertical-align: middle;\"><a class='btn-danger btn-sm' onclick=sync_status(" + tid + "," + st + ")>重发" + "</a></td>" +*/
+                            "</tr>"
+
+                        console.log(html);
+                        $("#user-tab tbody").html(html);
+                    },
+                    error: function (textStatus) {
+                        console.log("error" + textStatus)
+                        alert("查询错误!");
+                    }
+                })
+            }
+        } else {
+            // 有ywid 直接根据ywid查询
+            var url = "/zcbd/sync_result"
+            //alert(url);
+            $.ajax({
+                type: 'post',
+                url: url,
+                data: {"ywid": ywid},
+                // jsonp:"callback",
+                success: function (data) {
+                    debugger;
+                    console.log(data);
+                    var html = "";
+                    debugger;
+                    var synctimd = formatDate(data.sysncdate);
+                    /*      var st = data[i].sysncstatus;
+                          var tid = data[i].tid;*/
+                    html += "<tr>" +
+                        "<td style=\"vertical-align: middle;\">" + 1 + "</td>" +
+                        "<td style=\"vertical-align: middle;\">" + data.tid + "</td>" +
+                        "<td style=\"vertical-align: middle;\">" + data.posummary + "</td>" +
+                        "<td style=\"vertical-align: middle;\">" + data.sysncstatus + "</td>" +
+                        "<td style=\"vertical-align: middle; width:380px; height:51px; word-wrap:break-word; word-break:break-all\">" + data.sysncmessage + "</td>" +
+                        "<td style=\"vertical-align: middle;\">" + synctimd + "</td>" +
+                        /*  "<td style=\"vertical-align: middle;\"><a class='btn-danger btn-sm' onclick=sync_status(" + data[i].tid + ")>重发" + "</a></td>" +*/
+                        /*"<td style=\"vertical-align: middle;\"><a class='btn-danger btn-sm' onclick=sync_status(" + tid + "," + st + ")>重发" + "</a></td>" +*/
+                        "</tr>"
+
+                    console.log(html);
+                    $("#user-tab tbody").html(html);
+                },
+                error: function (textStatus) {
+                    console.log("error" + textStatus)
+                    alert("查询错误!");
+                }
+            })
+        }
+    };
+
+    /*重置按钮*/
+    function sync_czreset() {
+        $("#dwdh").val('');
+        $("#billid").val('');
+        $("#ywid").val('');
+    };
+
+</script>
+
+</body>
+</html>

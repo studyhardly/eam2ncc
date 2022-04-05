@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.VZczjKpmxDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.VZczjKpmx" id="VZczjKpmxMap">
+        <result property="ywid" column="YWID" jdbcType="INTEGER"/>
+        <result property="billid" column="BILLID" jdbcType="INTEGER"/>
+        <result property="ccrq" column="CCRQ" jdbcType="VARCHAR"/>
+        <result property="compid" column="COMPID" jdbcType="VARCHAR"/>
+        <result property="dxmc" column="DXMC" jdbcType="VARCHAR"/>
+        <result property="ggxh" column="GGXH" jdbcType="VARCHAR"/>
+        <result property="glbm" column="GLBM" jdbcType="INTEGER"/>
+        <result property="gys" column="GYS" jdbcType="VARCHAR"/>
+        <result property="jczl" column="JCZL" jdbcType="VARCHAR"/>
+        <result property="jldw" column="JLDW" jdbcType="INTEGER"/>
+        <result property="jzzb" column="JZZB" jdbcType="NUMERIC"/>
+        <result property="kssyrq" column="KSSYRQ" jdbcType="VARCHAR"/>
+        <result property="ljzj" column="LJZJ" jdbcType="NUMERIC"/>
+        <result property="rzrq" column="RZRQ" jdbcType="VARCHAR"/>
+        <result property="sl" column="SL" jdbcType="NUMERIC"/>
+        <result property="sybm" column="SYBM" jdbcType="NUMERIC"/>
+        <result property="sydw" column="SYDW" jdbcType="INTEGER"/>
+        <result property="syr" column="SYR" jdbcType="VARCHAR"/>
+        <result property="syyx" column="SYYX" jdbcType="NUMERIC"/>
+        <result property="syzt" column="SYZT" jdbcType="VARCHAR"/>
+        <result property="sCreateTime" column="S_CREATE_TIME" jdbcType="VARCHAR"/>
+        <result property="uppertypeid" column="UPPERTYPEID" jdbcType="VARCHAR"/>
+        <result property="tbr" column="TBR" jdbcType="VARCHAR"/>
+        <result property="xmmc" column="XMMC" jdbcType="INTEGER"/>
+        <result property="wzxx" column="WZXX" jdbcType="VARCHAR"/>
+        <result property="zcbm" column="ZCBM" jdbcType="VARCHAR"/>
+        <result property="zcfl" column="ZCFL" jdbcType="INTEGER"/>
+        <result property="zcyz" column="ZCYZ" jdbcType="NUMERIC"/>
+        <result property="zczjff" column="ZCZJFF" jdbcType="VARCHAR"/>
+        <result property="zczjfs" column="ZCZJFS" jdbcType="VARCHAR"/>
+        <result property="zjjzrq" column="ZJJZRQ" jdbcType="VARCHAR"/>
+        <result property="zjksrq" column="ZJKSRQ" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--根据编码查询卡片明细-->
+    <select id="queryKpmxByZcbm" resultMap="VZczjKpmxMap">
+        select
+        YWID, BILLID, CCRQ, COMPID, DXMC, GGXH, GLBM, GYS, JCZL, JLDW, JZZB, KSSYRQ, LJZJ, RZRQ, SL, SYBM, SYDW, SYR,
+        SYYX, SYZT, S_CREATE_TIME, UPPERTYPEID, TBR, XMMC, WZXX, ZCBM, ZCFL, ZCYZ, ZCZJFF, ZCZJFS, ZJJZRQ, ZJKSRQ
+        from V_ZCZJ_KPMX
+       where  zcbm in
+        <foreach collection="zcbmlist" item="zcbm" index="index" open="(" close=")" separator=",">
+            #{zcbm}
+        </foreach>
+    </select>
+
+    <!--入参为list时-->
+<!--
+    <select id="queryKpmxByZcbm" resultMap="VZczjKpmxMap">
+        select
+        YWID, BILLID, CCRQ, COMPID, DXMC, GGXH, GLBM, GYS, JCZL, JLDW, JZZB, KSSYRQ, LJZJ, RZRQ, SL, SYBM, SYDW, SYR,
+        SYYX, SYZT, S_CREATE_TIME, UPPERTYPEID, TBR, XMMC, WZXX, ZCBM, ZCFL, ZCYZ, ZCZJFF, ZCZJFS, ZJJZRQ, ZJKSRQ
+        from V_ZCZJ_KPMX
+        where  zcbm in
+        <foreach collection="zcbmlist" item="zcbm" index="index" open="(" close=")" separator=",">
+            #{zcbm}
+        </foreach>
+    </select>
+-->
+
+
+</mapper>
+

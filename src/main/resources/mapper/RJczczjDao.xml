@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.RJczczjDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.RJczczj" id="RJczczjMap">
+        <result property="tid" column="TID" jdbcType="VARCHAR"/>
+        <result property="posummary" column="POSUMMARY" jdbcType="VARCHAR"/>
+        <result property="sysncstatus" column="SYSNCSTATUS" jdbcType="VARCHAR"/>
+        <result property="sysncmessage" column="SYSNCMESSAGE" jdbcType="VARCHAR"/>
+        <result property="sysncmessagelog" column="SYSNCMESSAGELOG" jdbcType="VARCHAR"/>
+        <result property="sysncdate" column="SYSNCDATE" jdbcType="TIMESTAMP"/>
+        <result property="compid" column="COMPID" jdbcType="VARCHAR"/>
+        <result property="logid" column="LOGID" jdbcType="VARCHAR"/>
+  <!--      <result property="modelstr" column="MODELSTR" jdbcType="VARCHAR"/>
+        <result property="modelstrcurr" column="MODELSTRCURR" jdbcType="VARCHAR"/>-->
+        <result property="resendurl" column="RESENDURL" jdbcType="VARCHAR"/>
+        <result property="invokeurl" column="INVOKEURL" jdbcType="VARCHAR"/>
+        <result property="invokeaddress" column="INVOKEADDRESS" jdbcType="VARCHAR"/>
+        <result property="pid" column="PID" jdbcType="VARCHAR"/>
+        <result property="pc" column="PC" jdbcType="VARCHAR"/>
+        <result property="ipport" column="IPPORT" jdbcType="VARCHAR"/>
+        <result property="handletime" column="HANDLETIME" jdbcType="VARCHAR"/>
+        <result property="errortype" column="ERRORTYPE" jdbcType="VARCHAR"/>
+        <result property="errorlog" column="ERRORLOG" jdbcType="VARCHAR"/>
+        <result property="autoresend" column="AUTORESEND" jdbcType="VARCHAR"/>
+        <result property="resendflag" column="RESENDFLAG" jdbcType="VARCHAR"/>
+        <result property="errorcode" column="ERRORCODE" jdbcType="VARCHAR"/>
+        <result property="kssyrq" column="KSSYRQ" jdbcType="VARCHAR"/>
+        <result property="rzrq" column="RZRQ" jdbcType="VARCHAR"/>
+        <result property="xmmc" column="XMMC" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--根据单据业务id查询-->
+    <select id="queryByYwid" resultMap="RJczczjMap">
+        select
+          TID, POSUMMARY, SYSNCSTATUS, SYSNCMESSAGE, SYSNCMESSAGELOG, SYSNCDATE, COMPID, LOGID, RESENDURL, INVOKEURL, INVOKEADDRESS, PID, PC, IPPORT, HANDLETIME, ERRORTYPE, ERRORLOG, AUTORESEND, RESENDFLAG, ERRORCODE, KSSYRQ, RZRQ, XMMC
+        from nsoaware.R_JCZCZJ
+        where POSUMMARY = #{ywid}
+    </select>
+
+    <!--根据资产编码查询-->
+    <select id="queryByZcbm" resultMap="RJczczjMap">
+        select
+            TID, POSUMMARY, SYSNCSTATUS, SYSNCMESSAGE, SYSNCMESSAGELOG, SYSNCDATE, COMPID, LOGID,  RESENDURL, INVOKEURL, INVOKEADDRESS, PID, PC, IPPORT, HANDLETIME, ERRORTYPE, ERRORLOG, AUTORESEND, RESENDFLAG, ERRORCODE, KSSYRQ, RZRQ, XMMC
+        from nsoaware.R_JCZCZJ
+        where  TID in
+        <foreach collection="zcbmlist" item="zcbm" index="index" open="(" close=")" separator=",">
+            #{zcbm}
+        </foreach>
+    </select>
+
+
+
+    <!--通过资产编码修改数据-->
+    <update id="updateByZcbm">
+        update nsoaware.R_JCZCZJ
+       set  SYSNCSTATUS = 1
+        where TID in
+        <foreach collection="zcbmlist" item="zcbm" index="index" open="(" close=")" separator=",">
+            #{zcbm}
+        </foreach>
+    </update>
+
+    <!--通过资产编码修改数据-->
+    <update id="updateByYwid">
+        update nsoaware.R_JCZCZJ
+        set  SYSNCSTATUS = 1
+        where POSUMMARY = #{ywid}
+
+    </update>
+
+
+
+</mapper>
+

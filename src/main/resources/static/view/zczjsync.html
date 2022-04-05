@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>资产增加</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/controller.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+
+<body class="body-bg">
+<div class="container">
+    <div class="text-center">
+        <h3 class="p-h3">资产增加接口推送状态</h3>
+    </div>
+    <br>
+    <div class="col-lg-12 label">
+    <div class="col-lg-12  text-left">
+        <p>资产增加推送按单张资产卡片推送，一张单据中的多张资产卡片，根据校验逻辑会有部分成功，部分失败的现象。</p>
+        <p>可根据资产编码查询具体资产卡片推送结果，资产编码支持批量输入，中间用英文逗号隔开。或通过单据业务ID查询该单据下所有卡片的推送结果，单据业务ID支持单个查询 </p>
+    </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label class="p-size">资产编码:</label>
+            <input type="text" class="form-control" id="zcbm" placeholder="资产编码，支持批量查询，中间用英文逗号隔开">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label class="p-size">单据YWID:</label>
+            <input type="text" class="form-control " id="ywid" placeholder="单据业务ID，只支持单个"> &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="col-lg-6">
+    <button class="btn btn-info" onclick="sync_qry()">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-warning" onclick="sync_reset()">重置</button>
+    </div>
+
+
+    <div class="col-lg-12">
+        <br>
+        <p class=" p-size ">查询结果</p>
+    </div>
+
+    <div class="col-lg-12">
+        <div>
+            <table class="table table-bordered text-center" style="word-break:break-all;" id="user-tab">
+                <thead class="tab  label-success " >
+                <tr class="tab-h">
+                    <td>序号</td>
+                    <td>资产编码</td>
+                    <td>业务ID</td>
+                    <td>状态</td>
+                    <td>反馈信息</td>
+                    <td>同步时间</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody class="nr-auto">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

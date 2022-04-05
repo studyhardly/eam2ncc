@@ -1,0 +1,27 @@
+server:
+  port: 8002
+
+spring:
+  application:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@172.22.4.35:1521/JCEAMCSDB
+    username: FMIS9999
+    password: FMIS9999CSDB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.ssx.ems2ncc.dao
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  #配置thymeleaf
+  #  thymeleaf:
+  #    cache: false # 关闭缓存
+  #    prefix: classpath:/templates/ #指定模板位置
+  #    suffix: .html #指定后缀
+  logging:
+    level:
+      com.ssx.eam2ncc.* : debug

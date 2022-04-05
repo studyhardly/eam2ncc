@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SystemOperations</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="./js/index-js/pageinit.js"></script>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/index-css/pageinit.css">
+
+</head>
+<body>
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fa fa-angle-double-right" style="font-size:24px" id="btn"></i>
+    <i class="fa fa-angle-double-left" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>App Menu</header>
+    <ul>
+        <li><a href="/view/imsg.html" target="ifm"><i class="fa fa-file-code-o"></i>接口报文</a></li>
+        <li><a href="/view/user.html" target="ifm"><i class="fa fa-address-book"></i>在线用户</a></li>
+        <li><a href="/view/zczjsync.html" target="ifm"><i class="fa fa-plus-square"></i>增加推送状态</a></li>
+        <li><a href="/view/zcczsync.html" target="ifm"><i class="fa fa-minus-square"></i>处置推送状态</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>主从设备修改</a></li>
+        <li><a href="#"><i class="fa fa-bar-chart"></i>Services</a></li>
+        <li><a href="#"><i class="fa fa-line-chart"></i>Contact</a></li>
+        <li><a href="top-menu.html"><i class="fa fa-cog"></i>切换主题</a></li>
+    </ul>
+</div>
+<section>
+    <iframe name="ifm" class="ifm-mian">
+    </iframe>
+</section>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统在线用户</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/controller.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<script>
+
+    window.onload = function () {
+        qry_user();
+    }
+</script>
+
+<body class="body-bg">
+<div class="container">
+    <div class="text-center  ">
+        <h3 class="p-h3">系统在线用户</h3>
+    </div>
+    <div>
+        <p class=" p-size">查询条件</p>
+        <div class="div-qry-l">
+            <SPAN class="label">姓名:</SPAN>
+            <input id="username" class="ipt-lg input-sm">
+            <span class="label ">工号:</span>
+            <input id="logid" class="ipt-lg input-sm">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="qry-ywid" class="btn btn-success btn-sm " onclick="qry_user()">查询</button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="qry-reset" class="btn btn-info btn-sm " onclick="qry_reset()">重置</button> &nbsp;&nbsp;&nbsp;&nbsp;
+
+        </div>
+        <div class="div-qry-r">
+            <button id="clear-lock" class="btn btn-warning btn-sm " onclick="lock_user()">清除锁定用户</button>
+        </div>
+    </div>
+    <br>
+    <div class="col-lg-12">
+        <p class=" p-size ">查询结果</p>
+    </div>
+
+    <div class="col-lg-12">
+        <div >
+            <table class="table  text-center " id="user-tab">
+                <thead class="tab  label-success ">
+                <tr class="tab-h">
+                    <td>序号</td>
+                    <td>姓名</td>
+                    <td>工号</td>
+                    <td>IP</td>
+                    <td>登录时间</td>
+                    <td>单位ID</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody class="nr-auto">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

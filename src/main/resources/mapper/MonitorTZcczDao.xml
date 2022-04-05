@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.MonitorTZcczDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.MonitorTZccz" id="MonitorTZcczMap">
+        <result property="tid" column="TID" jdbcType="VARCHAR"/>
+        <result property="posummary" column="POSUMMARY" jdbcType="VARCHAR"/>
+        <result property="sysncstatus" column="SYSNCSTATUS" jdbcType="INTEGER"/>
+        <result property="sysncmessage" column="SYSNCMESSAGE" jdbcType="VARCHAR"/>
+        <result property="sysncdate" column="SYSNCDATE" jdbcType="TIMESTAMP"/>
+        <result property="isnew" column="ISNEW" jdbcType="INTEGER"/>
+        <result property="tbr" column="TBR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryAllByFlag" resultMap="MonitorTZcczMap">
+        select TID,
+               POSUMMARY,
+               SYSNCSTATUS,
+               SYSNCMESSAGE,
+               SYSNCDATE,
+               ISNEW,
+               TBR
+        from NSOAWARE.MONITOR_T_ZCCZ
+        where ISNEW= #{isNew}
+    </select>
+
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update NSOAWARE.MONITOR_T_ZCCZ
+       set isNew = #{isNew}
+        where tid= #{tid}
+    </update>
+
+</mapper>
+

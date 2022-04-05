@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.EamXtywUserDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.EamXtywUser" id="EamXtywUserMap">
+
+        <result property="usercode" column="USERCODE" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="EamXtywUserMap">
+        select
+        usercode, username, status,remark
+        from EAM_XTYW_USER
+        <where>1=1
+            <if test="usercode!=null and usercode!=''" >
+                and usercode = #{usercode}
+            </if>
+        </where>
+    </select>
+    <!--模糊查询-->
+    <select id="queryById" resultMap="EamXtywUserMap">
+        select
+        usercode, username, status,remark
+        from EAM_XTYW_USER
+        <where>1=1
+            <if test="usercode!=null and usercode!=''" >
+                and usercode like CONCAT(CONCAT('%',#{usercode}),'%')
+            </if>
+            <if test="username!=null and username!=''" >
+                and username like CONCAT(CONCAT('%',#{username}),'%')
+            </if>
+        </where>
+    </select>
+    <!--查询所有-->
+    <select id="queryAll" resultMap="EamXtywUserMap">
+        select
+            usercode, username, status,remark
+        from EAM_XTYW_USER
+    </select>
+    <!--查询激活状态的用户-->
+    <select id="queryReal" resultMap="EamXtywUserMap">
+        select
+            usercode, username, status,remark
+        from EAM_XTYW_USER
+        where  1=1
+          and status = 0
+    </select>
+    <!-- 新增 -->
+    <insert id="addUser">
+        insert into EAM_XTYW_USER(usercode, username, status, remark)
+        values (#{user.usercode},#{user.username},#{user.status},#{user.remark})
+    </insert>
+    <!-- 修改 -->
+    <update id="updateUser">
+            update EAM_XTYW_USER
+            <set>
+                <if test="user.username != null" >
+                    username = #{user.username},
+                </if>
+                <if test="user.remark != null" >
+                    remark = #{user.remark}
+                </if>
+            </set>
+            <where>
+                usercode = #{user.usercode}
+            </where>
+    </update>
+    <!-- 批量新增 -->
+    <insert id="addUsers" parameterType="java.util.List">
+        insert all
+        <foreach collection="users" item="item" index="index" separator=""  >
+            into EAM_XTYW_USER(usercode, username, status, remark) values (#{item.usercode},#{item.username},#{item.status},#{item.remark})
+        </foreach>
+        select 1 from dual
+    </insert>
+    <!-- 批量删除 -->
+    <delete id="deleteUsers" parameterType="java.util.List" >
+        delete  from  EAM_XTYW_USER where usercode in
+        <foreach item="id" collection="ids" index="no" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
+
+    <!-- 上线 -->
+    <update id="onlineUsers">
+        update EAM_XTYW_USER
+        <set>
+            status = 0
+        </set>
+        <where>
+            usercode = #{usercode}
+        </where>
+    </update>
+    <!-- 下线 -->
+    <update id="clearUsers">
+        update EAM_XTYW_USER
+        <set>
+            status = 1
+        </set>
+        <where>
+            usercode = #{usercode}
+        </where>
+    </update>
+    <!-- 批量修改 -->
+    <update id="updateUsers">
+        <foreach collection="users" item="user" index="index" open="begin" close=";end;" separator=";">
+            update EAM_XTYW_USER
+            <set>
+                <if test="user.username != null" >
+                    username = #{user.username},
+                </if>
+                <if test="user.status != null" >
+                    status = #{user.status},
+                </if>
+                remark = #{user.remark}
+
+            </set>
+            <where>
+                1=1
+                <if test="user.usercode!=null">
+                    and usercode = #{user.usercode}
+                </if>
+            </where>
+        </foreach>
+    </update>
+</mapper>
+

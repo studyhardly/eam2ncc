@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.XtywbillDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.Xtywbill" id="XtywbillMap">
+        <result property="gid" column="GID"/>
+        <result property="dwdh" column="DWDH"/>
+        <result property="typeid" column="TYPEID"/>
+        <result property="year" column="YEAR"/>
+        <result property="billid" column="BILLID"/>
+        <result property="summary" column="SUMMARY"/>
+
+    </resultMap>
+
+
+    <!--查询单据gid-->
+    <select id="getBillInfo" resultMap="XtywbillMap">
+        select GID,
+               DWDH,
+            YEAR,
+            BILLID,
+            TYPEID,
+            SUMMARY
+        from Xtywbill
+        where typeid = #{typeid}
+          and dwdh = #{dwdh}
+          and billid = #{billid}
+          and year = #{year}
+    </select>
+
+    <!--查询单据gid-->
+    <select id="getBillInfoByGid" resultMap="XtywbillMap">
+        select GID,
+               DWDH,
+            YEAR,
+            BILLID,
+            TYPEID,
+            SUMMARY
+        from Xtywbill
+        where GID = #{gid}
+
+    </select>
+    <select id="getCreateUserCode" resultType="java.lang.String">
+        select zg.yhmc from ${ywdj} yw
+               left join xtgldx5113 zg on zg.dxid = substr(yw.${colname},-7)
+        where yw.ywid = #{gid}
+    </select>
+</mapper>
+

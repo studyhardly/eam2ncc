@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .top {
+            /* 设置宽度高度背景颜色 */
+            height: auto; /*高度改为自动高度*/
+            width: 100%;
+            margin-left: 0;
+            background: #042331;
+            position: fixed; /*固定在顶部*/
+            top: 0; /*离顶部的距离为0*/
+            margin-bottom: 5px;
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: auto; /*宽度也改为自动*/
+            list-style-type: none;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-left: 2%;
+            /* margin-top: 0;          */
+            padding: 0;
+
+        }
+
+        .top li {
+            float: left; /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%; /* 两个li之间的距离*/
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top li a {
+            /* 设置链接内容显示的格式*/
+            display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: #FFFFFF;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            padding: 3px;
+            overflow: hidden;
+            text-decoration: none; /* 去除下划线 */
+
+        }
+
+        .top li a:hover {
+            display: block;
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #010b11;
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-size: 20px;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            margin-left: -0.2px;
+            background: #042331;
+            position: relative;
+            display: none; /* 默认隐藏二级菜单的内容 */
+
+
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            float: none;
+            text-align: center;
+
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+
+        }
+
+        body {
+            /*background:rgba(7, 60, 84, 0.95);*/
+            padding:0px; margin:0px;
+            background-image: url("./image/bg.png");
+        }
+
+        .ifm {
+            margin-top: 100px;
+            height: 98vh;
+            border: none;
+            display: block;
+            width: 100%;
+        }
+
+        .div-body {
+            margin-top: 18px;
+            height: auto;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script>
+        $(".div-body").height($(window).height()-$(".top").height());
+    </script>
+
+</head>
+<title>SystemOperations</title>
+<body>
+<div class="top">
+    <ul>
+        <li>
+            <a href="#" target="bo">接口报文</a>
+            <ul>
+                <li><a href="/view/imsg.html" target="bo">接口报文</a></li>
+               <!-- <li><a href="#">二级菜单</a></li>-->
+            </ul>
+        </li>
+        <li>
+            <a href="#">在线用户</a>
+            <ul>
+                <li><a href="/view/user.html" target="bo">在线用户</a></li>
+                <!--<li><a href="#">二级菜单</a></li>-->
+            </ul>
+        </li>
+        <li>
+            <a href="#">推送结果</a>
+            <ul>
+                <li><a href="/view/zczjsync.html" target="bo">资产增加</a></li>
+                <li><a href="/view/zcczsync.html" target="bo">资产处置</a></li>
+                <!--<li><a href="#">二级菜单</a></li>-->
+            </ul>
+        </li>
+        <li>
+            <a href="#">切换主题</a>
+            <ul>
+                <li><a href="theme.html" >经典蓝</a></li>
+                <li><a href="index.html" >经典灰</a></li>
+                <!--<li><a href="#">二级菜单</a></li>-->
+            </ul>
+        </li>
+    </ul>
+</div>
+<section class="div-body">
+    <iframe  name="bo" class="ifm"></iframe>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssx.eam2ncc.dao.XtclusteruserDao">
+
+    <resultMap type="com.ssx.eam2ncc.entity.Xtclusteruser" id="XtclusteruserMap">
+        <result property="logintype" column="LOGINTYPE" jdbcType="INTEGER"/>
+        <result property="isweblogon" column="ISWEBLOGON" jdbcType="INTEGER"/>
+        <result property="isexelogon" column="ISEXELOGON" jdbcType="INTEGER"/>
+        <result property="ip" column="IP" jdbcType="VARCHAR"/>
+        <result property="logondate" column="LOGONDATE" jdbcType="TIMESTAMP"/>
+        <result property="lastaccessdate" column="LASTACCESSDATE" jdbcType="TIMESTAMP"/>
+        <result property="host" column="HOST" jdbcType="VARCHAR"/>
+        <result property="companycode" column="COMPANYCODE" jdbcType="VARCHAR"/>
+        <result property="userid" column="USERID" jdbcType="INTEGER"/>
+        <result property="username" column="USERNAME" jdbcType="VARCHAR"/>
+        <result property="clustername" column="CLUSTERNAME" jdbcType="VARCHAR"/>
+        <result property="logid" column="LOGID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="XtclusteruserMap">
+        select
+        LOGINTYPE, ISWEBLOGON, ISEXELOGON, IP, LOGONDATE, LASTACCESSDATE, HOST, COMPANYCODE, USERID, USERNAME,
+        CLUSTERNAME, LOGID
+        from XTCLUSTERUSER
+        <where>
+            1 = 1
+            <if test="logid != null and logid!=''">
+                and logid = #{logid}
+            </if>
+            <if test="username != null and username!=''">
+                <bind name="pattern" value="'%'+username+'%'"/>
+                and username like #{pattern}
+            </if>
+        </where>
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="XtclusteruserMap">
+        select LOGINTYPE,
+               ISWEBLOGON,
+               ISEXELOGON,
+               IP,
+               LOGONDATE,
+               LASTACCESSDATE,
+               HOST,
+               COMPANYCODE,
+               USERID,
+               USERNAME,
+               CLUSTERNAME,
+               LOGID
+        from XTCLUSTERUSER
+        where 1 = 1
+    </select>
+
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from XTCLUSTERUSER
+        where logid = #{logid}
+    </delete>
+
+    <delete id="clearLockUser">
+        delete from loginfailinfo where 1 = 1
+    </delete>
+
+</mapper>
+
