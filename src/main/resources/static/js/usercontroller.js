@@ -1,7 +1,7 @@
 function setHead_jk() {
     $("#title-p").val("EAM系统用户管理");
 }
-//注册新增按钮的事件
+//注册新增按钮的事件.
 function user_add() {
     $("#myModalLabel").text("新增");
     $('#myModal').modal();
